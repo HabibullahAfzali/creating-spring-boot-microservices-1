@@ -8,6 +8,9 @@ import com.example.explorcali_pa.repo.TourPackageRepository;
 import com.example.explorcali_pa.repo.TourRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+
 @Service
 public class TourService {
 
@@ -26,6 +29,15 @@ public class TourService {
 				" Package not found for id "+tourPackageName));
 		return tourRepository.save( new Tour(title, description, blurb,
 				price, duration, bullets, keywords, tourPackage, difficulty, region));
+	}
+
+	public List<Tour> lookupByDifficulty(Difficulty difficulty){
+		return tourRepository.findByDifficulty(difficulty);
+
+	}
+	public List<Tour> lookupByPackage(String tourPackageCode){
+
+		return tourRepository.findByTourPackageCode(tourPackageCode);
 	}
 
 	public long total() {
