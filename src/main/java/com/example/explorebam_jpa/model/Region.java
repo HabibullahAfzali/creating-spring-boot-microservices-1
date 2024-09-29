@@ -1,4 +1,4 @@
-package com.example.explorcali_pa.model;
+package com.example.explorebam_jpa.model;
 
 public enum Region {Central_Coast("Central Coast"), Southern_California("Southern California"),
 	Northern_California("Northern California"), Varies("Varies");

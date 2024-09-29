@@ -1,12 +1,10 @@
-package com.example.explorcali_pa.repo;
+package com.example.explorebam_jpa.repo;
 
-import com.example.explorcali_pa.model.Difficulty;
-import com.example.explorcali_pa.model.Tour;
-import org.springframework.data.domain.Sort;
+import com.example.explorebam_jpa.model.Difficulty;
+import com.example.explorebam_jpa.model.Tour;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TourRepository extends JpaRepository<Tour,Integer> {
 List<Tour> findByDifficulty(Difficulty difficulty);

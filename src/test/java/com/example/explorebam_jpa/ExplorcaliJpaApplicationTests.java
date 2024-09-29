@@ -1,4 +1,4 @@
-package com.example.explorcali_pa;
+package com.example.explorebam_jpa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

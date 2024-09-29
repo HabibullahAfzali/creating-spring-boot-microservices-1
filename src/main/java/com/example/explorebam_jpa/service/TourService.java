@@ -1,14 +1,13 @@
-package com.example.explorcali_pa.service;
+package com.example.explorebam_jpa.service;
 
-import com.example.explorcali_pa.model.Difficulty;
-import com.example.explorcali_pa.model.Region;
-import com.example.explorcali_pa.model.Tour;
-import com.example.explorcali_pa.model.TourPackage;
-import com.example.explorcali_pa.repo.TourPackageRepository;
-import com.example.explorcali_pa.repo.TourRepository;
+import com.example.explorebam_jpa.model.Difficulty;
+import com.example.explorebam_jpa.model.Region;
+import com.example.explorebam_jpa.model.Tour;
+import com.example.explorebam_jpa.model.TourPackage;
+import com.example.explorebam_jpa.repo.TourPackageRepository;
+import com.example.explorebam_jpa.repo.TourRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service

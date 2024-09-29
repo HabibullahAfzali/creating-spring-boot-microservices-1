@@ -1,6 +1,6 @@
-package com.example.explorcali_pa.repo;
+package com.example.explorebam_jpa.repo;
 
-import com.example.explorcali_pa.model.TourPackage;
+import com.example.explorebam_jpa.model.TourPackage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

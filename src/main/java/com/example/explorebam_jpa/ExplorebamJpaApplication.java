@@ -1,9 +1,9 @@
-package com.example.explorcali_pa;
+package com.example.explorebam_jpa;
 
-import com.example.explorcali_pa.model.Difficulty;
-import com.example.explorcali_pa.model.Region;
-import com.example.explorcali_pa.service.TourPackageService;
-import com.example.explorcali_pa.service.TourService;
+import com.example.explorebam_jpa.model.Difficulty;
+import com.example.explorebam_jpa.model.Region;
+import com.example.explorebam_jpa.service.TourPackageService;
+import com.example.explorebam_jpa.service.TourService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.util.List;
 
 @SpringBootApplication
-public class ExplorecaliJpaApplication implements CommandLineRunner {
+public class ExplorebamJpaApplication implements CommandLineRunner {
 
-	private final String TOUR_IMPORT_FILE = "ExploreCalifornia.json";
+	private final String TOUR_IMPORT_FILE = "ExploreBamyan.json";
 
 	@Autowired
 	private TourPackageService tourPackageService;
@@ -28,7 +28,7 @@ public class ExplorecaliJpaApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(ExplorecaliJpaApplication.class, args);
+		SpringApplication.run(ExplorebamJpaApplication.class, args);
 	}
 
 	@Override

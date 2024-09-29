@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>explorcali-jpa</artifactId>
+	<artifactId>explorebam-jpa</artifactId>
 	<version>3.0.0</version>
 	<name>explorecali-jpa</name>
 	<description>Explore California Relational Database Microservice</description>

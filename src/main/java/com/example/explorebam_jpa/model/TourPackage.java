@@ -1,4 +1,4 @@
-package com.example.explorcali_pa.model;
+package com.example.explorebam_jpa.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

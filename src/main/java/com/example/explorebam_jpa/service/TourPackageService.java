@@ -1,7 +1,7 @@
-package com.example.explorcali_pa.service;
+package com.example.explorebam_jpa.service;
 
-import com.example.explorcali_pa.model.TourPackage;
-import com.example.explorcali_pa.repo.TourPackageRepository;
+import com.example.explorebam_jpa.model.TourPackage;
+import com.example.explorebam_jpa.repo.TourPackageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
