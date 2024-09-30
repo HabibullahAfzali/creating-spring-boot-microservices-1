@@ -4,6 +4,8 @@ import com.bamyan.explorebam_jpa.model.Tour;
 import com.bamyan.explorebam_jpa.model.TourRating;
 import com.bamyan.explorebam_jpa.repo.TourRatingRepository;
 import com.bamyan.explorebam_jpa.repo.TourRepository;
+import jakarta.transaction.Transactional;
+import jakarta.validation.ConstraintViolationException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,11 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
+import static org.springframework.util.ClassUtils.isPresent;
+
 @Service
+@Transactional
 @AllArgsConstructor
-@NoArgsConstructor
 public class TourRatingService {
 	@Autowired
 private TourRatingRepository tourRatingRepository;
@@ -30,6 +34,20 @@ private TourRepository tourRepository;
 		}
 		TourRating tourRating = new TourRating(tour, customerId, score, comment);
 		return tourRatingRepository.save(tourRating);
+	}
+
+	public  void rateMany(int tourId, int score, List<Integer> customers){
+
+		Tour tour = verifyTour(tourId);
+		for (Integer c : customers){
+			if(tourRatingRepository.findByTourIdAndCustomerId(tourId,c).isPresent()){
+
+				throw new ConstraintViolationException("Unable to create duplicate ratings", null);
+
+			}
+			tourRatingRepository.save(new TourRating(tour,c,score));
+
+		}
 	}
 	/**
 	 * Get a ratings by id.
