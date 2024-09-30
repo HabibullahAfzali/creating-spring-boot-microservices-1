@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolationException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ import static org.springframework.util.ClassUtils.isPresent;
 
 @Service
 @Transactional
+@Slf4j
 @AllArgsConstructor
 public class TourRatingService {
 	@Autowired
@@ -28,12 +30,9 @@ private TourRatingRepository tourRatingRepository;
 private TourRepository tourRepository;
 
 	public TourRating createNew(int tourId, Integer customerId, Integer score, String comment) throws NoSuchElementException {
-		Tour tour = verifyTour(tourId);
-		if (tour == null) {
-			throw new NoSuchElementException("Tour not found");
-		}
-		TourRating tourRating = new TourRating(tour, customerId, score, comment);
-		return tourRatingRepository.save(tourRating);
+
+		log.info("Create a tour rating for tour {} and customer {}", tourId, String.valueOf(customerId));
+		return tourRatingRepository.save(new TourRating(verifyTour(tourId),customerId,score,comment));
 	}
 
 	public  void rateMany(int tourId, int score, List<Integer> customers){
@@ -122,6 +121,7 @@ private TourRepository tourRepository;
 	 * @throws NoSuchElementException if no Tour found.
 	 */
 	public void delete(int tourId, Integer customerId) throws NoSuchElementException {
+		log.info("Delete rating for tour {} customer {}", tourId, customerId);
 		TourRating rating = verifyTourRating(tourId, customerId);
 		tourRatingRepository.delete(rating);
 	}
