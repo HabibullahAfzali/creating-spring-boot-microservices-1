@@ -1,6 +1,6 @@
-package com.example.explorebam_jpa.web;
+package com.bamyan.explorebam_jpa.web;
 
-import com.example.explorebam_jpa.model.TourRating;
+import com.bamyan.explorebam_jpa.model.TourRating;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

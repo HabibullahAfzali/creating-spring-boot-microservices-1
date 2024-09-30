@@ -1,7 +1,7 @@
-package com.example.explorebam_jpa.repo;
+package com.bamyan.explorebam_jpa.repo;
 
-import com.example.explorebam_jpa.model.Difficulty;
-import com.example.explorebam_jpa.model.Tour;
+import com.bamyan.explorebam_jpa.model.Difficulty;
+import com.bamyan.explorebam_jpa.model.Tour;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

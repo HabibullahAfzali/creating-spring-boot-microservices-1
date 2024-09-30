@@ -8,11 +8,11 @@
 		<version>3.3.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>com.bamyan</groupId>
 	<artifactId>explorebam-jpa</artifactId>
 	<version>3.0.0</version>
-	<name>explorecali-jpa</name>
-	<description>Explore California Relational Database Microservice</description>
+	<name>explorebam-jpa</name>
+	<description>Explore Bamyan Relational Database Microservice</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -71,6 +71,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>

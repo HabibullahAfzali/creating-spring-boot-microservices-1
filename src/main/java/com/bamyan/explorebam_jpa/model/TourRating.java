@@ -1,4 +1,4 @@
-package com.example.explorebam_jpa.model;
+package com.bamyan.explorebam_jpa.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

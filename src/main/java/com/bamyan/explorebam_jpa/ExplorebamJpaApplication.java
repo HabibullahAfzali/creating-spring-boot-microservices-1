@@ -1,21 +1,25 @@
-package com.example.explorebam_jpa;
+package com.bamyan.explorebam_jpa;
 
-import com.example.explorebam_jpa.model.Difficulty;
-import com.example.explorebam_jpa.model.Region;
-import com.example.explorebam_jpa.service.TourPackageService;
-import com.example.explorebam_jpa.service.TourService;
+import com.bamyan.explorebam_jpa.model.Difficulty;
+import com.bamyan.explorebam_jpa.model.Region;
+import com.bamyan.explorebam_jpa.service.TourPackageService;
+import com.bamyan.explorebam_jpa.service.TourService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 @SpringBootApplication
+@ComponentScan(basePackages = "com.bamyan.explorebam_jpa")
+@EntityScan(basePackages = "com.bamyan.explorebam_jpa.model")
 public class ExplorebamJpaApplication implements CommandLineRunner {
 
 	private final String TOUR_IMPORT_FILE = "ExploreBamyan.json";
@@ -37,7 +41,7 @@ public class ExplorebamJpaApplication implements CommandLineRunner {
 		createTourAllPackages();
 		System.out.println("persisted packages = " + tourPackageService.total());
 		createToursFromFile(TOUR_IMPORT_FILE);
-		System.out.println("Persisted Tours = "+ tourService.total());
+		System.out.println("Persisted Tours = " + tourService.total());
 
 	}
 
@@ -55,9 +59,9 @@ public class ExplorebamJpaApplication implements CommandLineRunner {
 	}
 
 
-	private void createToursFromFile(String tourImportFile)  throws IOException {
+	private void createToursFromFile(String tourImportFile) throws IOException {
 
-		TourFromFile.read(tourImportFile).forEach(t->
+		TourFromFile.read(tourImportFile).forEach(t ->
 				tourService.createTour(
 						t.packageName(),
 						t.title(),
@@ -74,10 +78,11 @@ public class ExplorebamJpaApplication implements CommandLineRunner {
 	}
 
 
-	record TourFromFile(String packageName, String title,String description,String blurb, Integer price,
-	                    String length, String bullets, String keywords, String difficulty,String region){
-		static List<TourFromFile> read(String fileToImport) throws  IOException {
-			return  new ObjectMapper().readValue(new File(fileToImport), new TypeReference<List<TourFromFile>>(){});
+	record TourFromFile(String packageName, String title, String description, String blurb, Integer price,
+	                    String length, String bullets, String keywords, String difficulty, String region) {
+		static List<TourFromFile> read(String fileToImport) throws IOException {
+			return new ObjectMapper().readValue(new File(fileToImport), new TypeReference<List<TourFromFile>>() {
+			});
 		}
 	}
 }

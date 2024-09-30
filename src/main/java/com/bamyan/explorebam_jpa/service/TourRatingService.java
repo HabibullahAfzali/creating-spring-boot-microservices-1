@@ -1,11 +1,12 @@
-package com.example.explorebam_jpa.service;
+package com.bamyan.explorebam_jpa.service;
 
-import com.example.explorebam_jpa.model.Tour;
-import com.example.explorebam_jpa.model.TourRating;
-import com.example.explorebam_jpa.repo.TourRatingRepository;
-import com.example.explorebam_jpa.repo.TourRepository;
+import com.bamyan.explorebam_jpa.model.Tour;
+import com.bamyan.explorebam_jpa.model.TourRating;
+import com.bamyan.explorebam_jpa.repo.TourRatingRepository;
+import com.bamyan.explorebam_jpa.repo.TourRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,25 +18,37 @@ import java.util.OptionalDouble;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TourRatingService {
+	@Autowired
 private TourRatingRepository tourRatingRepository;
+	@Autowired
 private TourRepository tourRepository;
-	public TourRating createNew(int tourId, Integer customerId, Integer score, String comment)
-			throws NoSuchElementException {
-		return tourRatingRepository.save( new TourRating(verifyTour(tourId),customerId,score,comment));
+
+	public TourRating createNew(int tourId, Integer customerId, Integer score, String comment) throws NoSuchElementException {
+		Tour tour = verifyTour(tourId);
+		if (tour == null) {
+			throw new NoSuchElementException("Tour not found");
+		}
+		TourRating tourRating = new TourRating(tour, customerId, score, comment);
+		return tourRatingRepository.save(tourRating);
+	}
+	/**
+	 * Get a ratings by id.
+	 *
+	 * @param id rating identifier
+	 * @return TourRatings
+	 */
+	public Optional<TourRating> lookupRatingById(int id) {
+		return tourRatingRepository.findById(id);
 	}
 
-//	Get a ratings by id
-// param id is the rating identifier
-	public Optional<TourRating> lookupRatingById(int id){
-
-		return  tourRatingRepository.findById(id);
-
-	}
-	//returns all ratings
-public List<TourRating> lookupAll(){
-
+	/**
+	 * Get All Ratings.
+	 *
+	 * @return List of TourRatings
+	 */
+	public List<TourRating> lookupAll() {
 		return tourRatingRepository.findAll();
-}
+	}
 
 	/**
 	 * Get a page of tour ratings for a tour.
@@ -107,10 +120,19 @@ public List<TourRating> lookupAll(){
 		OptionalDouble average = ratings.stream().mapToInt((rating) -> rating.getScore()).average();
 		return average.isPresent() ? average.getAsDouble() : null;
 	}
+
+	/**
+	 * Verify and return the Tour given a tourId.
+	 *
+	 * @param tourId
+	 * @return the found Tour
+	 * @throws NoSuchElementException if no Tour found.
+	 */
 	private Tour verifyTour(int tourId) throws NoSuchElementException {
 		return tourRepository.findById(tourId)
-				.orElseThrow(()->new NoSuchElementException("Tour does not exist "+tourId));
+				.orElseThrow(() -> new NoSuchElementException("Tour does not exist " + tourId));
 	}
+
 	/**
 	 * Verify and return the TourRating for a particular tourId and Customer
 	 *

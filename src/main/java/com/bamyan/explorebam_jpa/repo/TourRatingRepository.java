@@ -1,7 +1,6 @@
-package com.example.explorebam_jpa.repo;
+package com.bamyan.explorebam_jpa.repo;
 
-import com.example.explorebam_jpa.model.Tour;
-import com.example.explorebam_jpa.model.TourRating;
+import com.bamyan.explorebam_jpa.model.TourRating;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

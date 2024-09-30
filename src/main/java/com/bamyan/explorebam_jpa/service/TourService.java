@@ -1,25 +1,23 @@
-package com.example.explorebam_jpa.service;
+package com.bamyan.explorebam_jpa.service;
 
-import com.example.explorebam_jpa.model.Difficulty;
-import com.example.explorebam_jpa.model.Region;
-import com.example.explorebam_jpa.model.Tour;
-import com.example.explorebam_jpa.model.TourPackage;
-import com.example.explorebam_jpa.repo.TourPackageRepository;
-import com.example.explorebam_jpa.repo.TourRepository;
+import com.bamyan.explorebam_jpa.model.Difficulty;
+import com.bamyan.explorebam_jpa.model.Region;
+import com.bamyan.explorebam_jpa.model.Tour;
+import com.bamyan.explorebam_jpa.model.TourPackage;
+import com.bamyan.explorebam_jpa.repo.TourPackageRepository;
+import com.bamyan.explorebam_jpa.repo.TourRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class TourService {
+	private final TourPackageRepository tourPackageRepository;
+	private final TourRepository tourRepository;
 
-	private TourPackageRepository tourPackageRepository;
-	private TourRepository tourRepository;
-
-	public TourService(TourRepository tourRepository,TourPackageRepository tourPackageRepository){
-		this.tourPackageRepository = tourPackageRepository;
-		this.tourRepository = tourRepository;
-	}
 	public Tour createTour(String tourPackageName, String title,
 	                       String description, String blurb, Integer price, String duration,
 	                       String bullets, String keywords, Difficulty difficulty, Region region) {
