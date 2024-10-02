@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
+@NoArgsConstructor
 @Slf4j
 @RequestMapping(path = "/tours/{tourId}/ratings")
 public class TourRatingController {
